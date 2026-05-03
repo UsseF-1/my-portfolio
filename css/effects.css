@@ -1,0 +1,608 @@
+/* ============================================================
+   effects.css — SPA Scroll Reveal & Hover Animations
+   Youssef Ahmed Portfolio — UNIFIED ANIMATION SYSTEM v2
+   ============================================================
+   DESIGN TOKENS (animation system):
+   --dur-instant : 150ms  — micro-interactions (active press)
+   --dur-fast    : 220ms  — hover color/bg changes
+   --dur-base    : 320ms  — hover lifts, drawer, card hovers
+   --dur-reveal  : 560ms  — scroll-reveal entrances
+   --dur-slow    : 700ms  — glow/image parallax effects
+   --ease-std    : cubic-bezier(0.4, 0, 0.2, 1)    — Material standard
+   --ease-spring : cubic-bezier(0.34, 1.56, 0.64, 1) — Spring (icon nudges)
+   --ease-enter  : cubic-bezier(0.0, 0.0, 0.2, 1)  — Decelerate (entrances)
+
+   RULES:
+   - NEVER changes any color value
+   - Uses transform + opacity only to avoid layout shifts
+   - Respects prefers-reduced-motion
+   ============================================================ */
+
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+:root {
+    --dur-instant : 150ms;
+    --dur-fast    : 220ms;
+    --dur-base    : 320ms;
+    --dur-reveal  : 560ms;
+    --dur-slow    : 700ms;
+    --ease-std    : cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-spring : cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-enter  : cubic-bezier(0.0, 0.0, 0.2, 1);
+}
+
+/* ============================================================
+   1. SCROLL REVEAL
+   ============================================================ */
+.reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity var(--dur-reveal) var(--ease-std),
+                transform var(--dur-reveal) var(--ease-std);
+}
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-28px);
+    transition: opacity var(--dur-reveal) var(--ease-std),
+                transform var(--dur-reveal) var(--ease-std);
+}
+.reveal-right {
+    opacity: 0;
+    transform: translateX(28px);
+    transition: opacity var(--dur-reveal) var(--ease-std),
+                transform var(--dur-reveal) var(--ease-std);
+}
+.reveal.in-view,
+.reveal-left.in-view,
+.reveal-right.in-view {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+/* Stagger — unified 70ms step */
+.reveal-stagger > *:nth-child(1)    { transition-delay:   0ms; }
+.reveal-stagger > *:nth-child(2)    { transition-delay:  70ms; }
+.reveal-stagger > *:nth-child(3)    { transition-delay: 140ms; }
+.reveal-stagger > *:nth-child(4)    { transition-delay: 210ms; }
+.reveal-stagger > *:nth-child(5)    { transition-delay: 280ms; }
+.reveal-stagger > *:nth-child(6)    { transition-delay: 350ms; }
+.reveal-stagger > *:nth-child(7)    { transition-delay: 420ms; }
+.reveal-stagger > *:nth-child(8)    { transition-delay: 490ms; }
+.reveal-stagger > *:nth-child(9)    { transition-delay: 560ms; }
+.reveal-stagger > *:nth-child(10)   { transition-delay: 630ms; }
+.reveal-stagger > *:nth-child(11)   { transition-delay: 700ms; }
+.reveal-stagger > *:nth-child(12)   { transition-delay: 770ms; }
+.reveal-stagger > *:nth-child(n+13) { transition-delay: 840ms; }
+
+.reveal-stagger.reveal > *,
+.reveal-stagger > *.reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity var(--dur-reveal) var(--ease-std),
+                transform var(--dur-reveal) var(--ease-std);
+}
+.reveal-stagger.in-view > *,
+.reveal-stagger > *.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ============================================================
+   2. SCROLL PADDING
+   ============================================================ */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+}
+
+/* ============================================================
+   3. HOVER — GENERIC CARD LIFT
+   ============================================================ */
+.hover-lift {
+    transition: transform var(--dur-base) var(--ease-std),
+                box-shadow var(--dur-base) var(--ease-std);
+    will-change: transform;
+}
+.hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px -8px rgba(124, 59, 237, 0.12),
+                0 4px 12px -4px rgba(0, 0, 0, 0.08);
+}
+
+/* ============================================================
+   4. HOVER — SIDEBAR NAV ICONS
+   ============================================================ */
+aside nav a {
+    transition: background-color var(--dur-fast) var(--ease-std),
+                color            var(--dur-fast) var(--ease-std),
+                transform        var(--dur-fast) var(--ease-std);
+}
+aside nav a .material-symbols-outlined {
+    display: inline-block;
+    transition: transform var(--dur-fast) var(--ease-spring);
+}
+aside nav a:hover .material-symbols-outlined {
+    transform: translateX(4px);
+}
+
+/* ============================================================
+   5. HOVER — BUTTONS
+   ============================================================ */
+.btn-lift {
+    transition: transform  var(--dur-base) var(--ease-spring),
+                box-shadow var(--dur-base) var(--ease-std) !important;
+    will-change: transform;
+}
+.btn-lift:hover {
+    transform: translateY(-2px) scale(1.02) !important;
+    box-shadow: 0 8px 20px -4px rgba(124, 59, 237, 0.35) !important;
+}
+.btn-lift:active {
+    transform: scale(0.97) !important;
+    transition-duration: var(--dur-instant) !important;
+}
+
+/* ============================================================
+   6. HOVER — HEADING UNDERLINE
+   ============================================================ */
+.heading-underline {
+    position: relative;
+    display: inline-block;
+}
+.heading-underline::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 2px;
+    background: currentColor;
+    transition: width var(--dur-base) var(--ease-std);
+}
+.heading-underline:hover::after {
+    width: 100%;
+}
+
+/* ============================================================
+   7. MOBILE DRAWER
+   ============================================================ */
+#mobile-drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 18rem;
+    z-index: 100;
+    transform: translateX(-100%);
+    transition: transform var(--dur-base) var(--ease-std);
+    overflow-y: auto;
+}
+#mobile-drawer.open {
+    transform: translateX(0);
+}
+#mobile-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99;
+    background: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--dur-base) var(--ease-std);
+}
+#mobile-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* ============================================================
+   8. ACTIVE NAV LINK
+   ============================================================ */
+.spa-active-nav {
+    background-color: rgba(124, 59, 237, 0.1);
+    color: #7c3bed;
+    border-right: 3px solid #7c3bed;
+}
+
+/* ============================================================
+   9. SECTION DIVIDER
+   ============================================================ */
+.section-divider {
+    border: none;
+    border-top: 1px solid rgba(124, 59, 237, 0.1);
+    margin: 0;
+}
+section[id] {
+    scroll-margin-top: 0;
+}
+
+/* ============================================================
+   10. TAILWIND TRANSITION CLASS OVERRIDES
+   Brings all Tailwind-based transitions into the unified token system.
+   ============================================================ */
+
+/* transition-colors — nav links, social icons, text hover */
+.transition-colors {
+    transition-property: color, background-color, border-color !important;
+    transition-duration: var(--dur-fast) !important;
+    transition-timing-function: var(--ease-std) !important;
+}
+
+/* transition-shadow — stat mini-cards (home hero) */
+.transition-shadow {
+    transition-property: box-shadow !important;
+    transition-duration: var(--dur-base) !important;
+    transition-timing-function: var(--ease-std) !important;
+}
+
+/* transition-opacity — gradient overlays */
+.transition-opacity {
+    transition-property: opacity !important;
+    transition-duration: var(--dur-base) !important;
+    transition-timing-function: var(--ease-std) !important;
+}
+
+/* transition-transform — image zooms, icon nudges */
+.transition-transform {
+    transition-property: transform !important;
+    transition-duration: var(--dur-slow) !important;
+    transition-timing-function: var(--ease-std) !important;
+}
+
+/* transition-all — cards, buttons, misc elements
+   was scattered: no duration / duration-200 / duration-300 / duration-500 —
+   now all share --dur-base (320ms) */
+.transition-all {
+    transition-property: all !important;
+    transition-duration: var(--dur-base) !important;
+    transition-timing-function: var(--ease-std) !important;
+}
+
+/* ============================================================
+   11. SKILL CARDS — scroll-reveal + hover
+   ============================================================ */
+.skill-card-animated {
+    transition: opacity      var(--dur-reveal) var(--ease-std),
+                transform    var(--dur-reveal) var(--ease-std),
+                box-shadow   var(--dur-base)   var(--ease-std),
+                border-color var(--dur-fast)   var(--ease-std);
+    will-change: transform, opacity;
+}
+.skill-card-animated.is-visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+.skill-card-animated:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 14px 36px rgba(124, 59, 237, 0.12);
+    border-color: rgba(124, 59, 237, 0.25) !important;
+}
+/* Icon box in skill card — spring micro-interaction */
+.skill-card-animated .size-11 {
+    transition: background-color var(--dur-base) var(--ease-std),
+                color            var(--dur-base) var(--ease-std),
+                transform        var(--dur-base) var(--ease-spring);
+}
+.skill-card-animated:hover .size-11 {
+    transform: scale(1.08) rotate(-3deg);
+}
+
+/* Stagger — 70ms step */
+#skills-cards-grid .skill-card-animated:nth-child(1) { transition-delay: 0.00s; }
+#skills-cards-grid .skill-card-animated:nth-child(2) { transition-delay: 0.07s; }
+#skills-cards-grid .skill-card-animated:nth-child(3) { transition-delay: 0.14s; }
+#skills-cards-grid .skill-card-animated:nth-child(4) { transition-delay: 0.21s; }
+#skills-cards-grid .skill-card-animated:nth-child(5) { transition-delay: 0.28s; }
+#skills-cards-grid .skill-card-animated:nth-child(6) { transition-delay: 0.35s; }
+#skills-cards-grid .skill-card-animated:nth-child(7) { transition-delay: 0.42s; }
+
+/* ============================================================
+   12. SKILL CHIPS — hover micro-interaction
+   ============================================================ */
+.skill-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 12px;
+    border-radius: 8px;
+    font-size: 11.5px;
+    font-weight: 600;
+    background: rgba(248, 250, 252, 1);
+    border: 1px solid rgba(226, 232, 240, 1);
+    color: #334155;
+    cursor: default;
+    transition: background     var(--dur-fast) var(--ease-std),
+                border-color   var(--dur-fast) var(--ease-std),
+                color          var(--dur-fast) var(--ease-std),
+                transform      var(--dur-fast) var(--ease-spring);
+}
+.dark .skill-chip {
+    background: rgba(30, 41, 59, 0.8);
+    border-color: rgba(51, 65, 85, 1);
+    color: #cbd5e1;
+}
+.skill-chip:hover {
+    background: rgba(124, 59, 237, 0.08);
+    border-color: rgba(124, 59, 237, 0.35);
+    color: #7c3bed;
+    transform: translateY(-2px);
+}
+
+/* ============================================================
+   13. SOFT SKILLS TAGS — scale-in reveal
+   ============================================================ */
+.soft-tag-animated {
+    transition: opacity    var(--dur-reveal) var(--ease-spring),
+                transform  var(--dur-reveal) var(--ease-spring),
+                box-shadow var(--dur-base)   var(--ease-std),
+                background var(--dur-fast)   var(--ease-std);
+    will-change: transform, opacity;
+}
+.soft-tag-animated.is-visible {
+    opacity: 1 !important;
+    transform: scale(1) !important;
+}
+.soft-tag-animated:hover {
+    transform: scale(1.07) translateY(-2px) !important;
+    box-shadow: 0 6px 18px rgba(124, 59, 237, 0.18);
+}
+
+/* Stagger — 40ms step */
+#soft-skills-container .soft-tag-animated:nth-child(1)  { transition-delay: 0.00s; }
+#soft-skills-container .soft-tag-animated:nth-child(2)  { transition-delay: 0.04s; }
+#soft-skills-container .soft-tag-animated:nth-child(3)  { transition-delay: 0.08s; }
+#soft-skills-container .soft-tag-animated:nth-child(4)  { transition-delay: 0.12s; }
+#soft-skills-container .soft-tag-animated:nth-child(5)  { transition-delay: 0.16s; }
+#soft-skills-container .soft-tag-animated:nth-child(6)  { transition-delay: 0.20s; }
+#soft-skills-container .soft-tag-animated:nth-child(7)  { transition-delay: 0.24s; }
+#soft-skills-container .soft-tag-animated:nth-child(8)  { transition-delay: 0.28s; }
+#soft-skills-container .soft-tag-animated:nth-child(9)  { transition-delay: 0.32s; }
+#soft-skills-container .soft-tag-animated:nth-child(10) { transition-delay: 0.36s; }
+
+/* ============================================================
+   14. LANGUAGE BAR ITEMS — slide from right
+   ============================================================ */
+.lang-item-animated {
+    transition: opacity   var(--dur-reveal) var(--ease-std),
+                transform var(--dur-reveal) var(--ease-std);
+}
+.lang-item-animated.is-visible {
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+}
+#lang-card .lang-item-animated:nth-child(1) { transition-delay: 0.10s; }
+#lang-card .lang-item-animated:nth-child(2) { transition-delay: 0.22s; }
+
+.lang-bar-fill {
+    transition: width 1.1s var(--ease-std) 0.4s;
+}
+
+/* ============================================================
+   15. COMPUTER SKILLS ITEMS — slide from left
+   ============================================================ */
+.comp-item-animated {
+    transition: opacity      var(--dur-reveal) var(--ease-std),
+                transform    var(--dur-reveal) var(--ease-std),
+                border-color var(--dur-fast)   var(--ease-std),
+                box-shadow   var(--dur-base)   var(--ease-std);
+}
+.comp-item-animated.is-visible {
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+}
+.comp-item-animated:hover {
+    transform: translateY(-2px) !important;
+    border-color: rgba(124, 59, 237, 0.30) !important;
+}
+#comp-skills-grid .comp-item-animated:nth-child(1) { transition-delay: 0.00s; }
+#comp-skills-grid .comp-item-animated:nth-child(2) { transition-delay: 0.07s; }
+#comp-skills-grid .comp-item-animated:nth-child(3) { transition-delay: 0.14s; }
+#comp-skills-grid .comp-item-animated:nth-child(4) { transition-delay: 0.21s; }
+
+/* ============================================================
+   16. SERVICE CARDS — reveal + accent strip
+   ============================================================ */
+.service-card-new {
+    position: relative;
+    overflow: hidden;
+    transition: opacity      var(--dur-reveal) var(--ease-spring),
+                transform    var(--dur-reveal) var(--ease-spring),
+                box-shadow   var(--dur-base)   var(--ease-std),
+                border-color var(--dur-fast)   var(--ease-std);
+    will-change: transform, opacity;
+}
+.service-card-new.is-visible {
+    opacity: 1 !important;
+    transform: translateY(0) scale(1) !important;
+}
+.service-card-new:hover {
+    transform: translateY(-6px) scale(1.012) !important;
+    box-shadow: 0 20px 40px rgba(124, 59, 237, 0.12),
+                0 8px 16px rgba(0,0,0,0.06) !important;
+    border-color: rgba(196, 181, 253, 0.6) !important;
+}
+.service-card-new::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #7c3bed, #06b6d4);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--dur-base) var(--ease-std);
+    border-radius: 3px 3px 0 0;
+}
+.service-card-new:hover::before { transform: scaleX(1); }
+.service-card-new::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 110% -10%, rgba(124,59,237,0.06) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity var(--dur-base) var(--ease-std);
+    pointer-events: none;
+}
+.service-card-new:hover::after { opacity: 1; }
+.svc-icon-wrap {
+    transition: transform var(--dur-base) var(--ease-spring);
+}
+.service-card-new:hover .svc-icon-wrap {
+    transform: scale(1.1) rotate(-4deg);
+}
+
+/* Stagger — 70ms step */
+#services-grid .service-card-new:nth-child(1) { transition-delay: 0.00s; }
+#services-grid .service-card-new:nth-child(2) { transition-delay: 0.07s; }
+#services-grid .service-card-new:nth-child(3) { transition-delay: 0.14s; }
+#services-grid .service-card-new:nth-child(4) { transition-delay: 0.21s; }
+#services-grid .service-card-new:nth-child(5) { transition-delay: 0.28s; }
+#services-grid .service-card-new:nth-child(6) { transition-delay: 0.35s; }
+
+/* ============================================================
+   17. TECH TAGS in Services
+   ============================================================ */
+.tech-tag-new {
+    transition: background   var(--dur-fast) var(--ease-std),
+                color         var(--dur-fast) var(--ease-std),
+                border-color  var(--dur-fast) var(--ease-std),
+                transform     var(--dur-fast) var(--ease-spring),
+                box-shadow    var(--dur-fast) var(--ease-std);
+    cursor: default;
+}
+.tech-tag-new:hover {
+    background: #7c3bed !important;
+    color: #fff !important;
+    border-color: #7c3bed !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(124, 59, 237, 0.30);
+}
+.service-card-new:hover .svc-tool-tag {
+    background: rgba(124, 59, 237, 0.12);
+    border-color: rgba(124, 59, 237, 0.30);
+    transition: background   var(--dur-fast) var(--ease-std),
+                border-color var(--dur-fast) var(--ease-std);
+}
+
+/* ============================================================
+   18. PROJECT CARDS — lift + reveal + accent strip
+   ============================================================ */
+.project-card {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity      var(--dur-reveal) var(--ease-std),
+                transform    var(--dur-reveal) var(--ease-std),
+                box-shadow   var(--dur-base)   var(--ease-std),
+                border-color var(--dur-fast)   var(--ease-std);
+    will-change: transform, opacity;
+}
+.project-card.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.project-card:hover {
+    transform: translateY(-6px) scale(1.008) !important;
+    box-shadow: 0 30px 40px -10px rgba(124, 59, 237, 0.14),
+                0 12px 20px -8px rgba(124, 59, 237, 0.08) !important;
+    border-color: rgba(124, 59, 237, 0.25) !important;
+}
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #7c3bed, #06b6d4);
+    transform: scaleX(0);
+    transform-origin: left;
+    border-radius: 3px 3px 0 0;
+    transition: transform var(--dur-base) var(--ease-std);
+}
+.project-card:hover::before { transform: scaleX(1); }
+
+/* Stagger — 100ms step */
+#projects-list .project-card:nth-child(1) { transition-delay: 0.00s; }
+#projects-list .project-card:nth-child(2) { transition-delay: 0.10s; }
+#projects-list .project-card:nth-child(3) { transition-delay: 0.20s; }
+
+/* ============================================================
+   19. RESPONSIVENESS
+   ============================================================ */
+@media (max-width: 480px) {
+    img { max-width: 100%; }
+    .absolute.-top-10, .absolute.-bottom-10,
+    .absolute.-left-10, .absolute.-right-10 { overflow: hidden; }
+    .flex-col-mobile { flex-direction: column !important; }
+    .px-6 { padding-left: 1rem; padding-right: 1rem; }
+    .text-5xl { font-size: 2.25rem !important; }
+    .text-7xl { font-size: 2.75rem !important; }
+}
+@media (min-width: 481px) and (max-width: 1024px) {
+    .max-w-6xl { max-width: 100%; padding-left: 1.5rem; padding-right: 1.5rem; }
+}
+
+/* ============================================================
+   20. PREFERS-REDUCED-MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+    .reveal, .reveal-left, .reveal-right {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+    .reveal-stagger > * {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+        transition-delay: 0ms !important;
+    }
+    .skill-card-animated, .soft-tag-animated, .lang-item-animated,
+    .comp-item-animated, .service-card-new, .project-card {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+    .lang-bar-fill { transition: none !important; }
+    .service-card-new::before, .service-card-new::after,
+    .project-card::before { transition: none !important; }
+    .hover-lift:hover, .btn-lift:hover,
+    .skill-card-animated:hover, .soft-tag-animated:hover,
+    .comp-item-animated:hover, .service-card-new:hover,
+    .project-card:hover { transform: none !important; }
+    aside nav a:hover .material-symbols-outlined { transform: none !important; }
+    .heading-underline::after { transition: none !important; }
+    #mobile-drawer { transition: none !important; }
+    .transition-all, .transition-colors, .transition-shadow,
+    .transition-opacity, .transition-transform { transition: none !important; }
+}
+
+
+
+/* ============================================================
+   21. DARK MODE — surface glow enhancements
+   ============================================================ */
+
+/* Subtle purple glow on hovered cards in dark */
+.dark .service-card-new:hover,
+.dark .project-card:hover {
+    box-shadow: 0 20px 40px rgba(124, 59, 237, 0.22),
+                0 0 0 1px rgba(124, 59, 237, 0.15),
+                0 8px 16px rgba(0,0,0,0.4) !important;
+}
+
+/* Accent strip colors stay vibrant in dark */
+.dark .service-card-new::before,
+.dark .project-card::before {
+    background: linear-gradient(90deg, #a78bfa, #06b6d4) !important;
+    opacity: 0.9;
+}
+
+/* Skill cards in dark — glow on hover */
+.dark .skill-card-animated:hover {
+    box-shadow: 0 0 0 1px rgba(124, 59, 237, 0.20),
+                0 12px 28px rgba(124, 59, 237, 0.15),
+                0 4px 8px rgba(0,0,0,0.3) !important;
+    border-color: rgba(124, 59, 237, 0.30) !important;
+}
+
+/* Lang bars — slightly brighter in dark */
+.dark .lang-bar-fill {
+    filter: brightness(1.15);
+}
