@@ -1,0 +1,659 @@
+/* ============================================================
+   responsive.css — Youssef Ahmed Portfolio
+   Purpose: Responsiveness fixes ONLY for mobile (320–480px),
+            tablet (768–1024px), and desktop (1024px+).
+   Rules: No design changes, no color/font changes, no new
+          components. Only layout, spacing, overflow, scaling.
+   ============================================================ */
+
+/* ============================================================
+   GLOBAL — prevent horizontal overflow on all viewports
+   ============================================================ */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ============================================================
+   LAYOUT ROOT — sidebar + main layout
+   ============================================================ */
+
+/* The root flex container needs to handle narrow screens */
+.flex.min-h-screen.relative {
+    flex-direction: column;
+}
+
+@media (min-width: 1024px) {
+    .flex.min-h-screen.relative {
+        flex-direction: row;
+    }
+}
+
+/* ============================================================
+   SECTION BASE — consistent padding at each breakpoint
+   ============================================================ */
+@media (max-width: 767px) {
+    /* Tighten section padding on mobile */
+    section > div,
+    section > .p-8,
+    section > .p-8.md\:p-16,
+    section > .p-8.lg\:p-16,
+    section > .p-8.lg\:p-12,
+    section > .custom-scrollbar {
+        padding: 1.5rem 1rem;
+    }
+
+    .max-w-6xl.mx-auto.px-6,
+    .max-w-6xl.mx-auto.px-4 {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    /* Section headings — scale down on mobile */
+    h1.text-5xl,
+    h2.text-5xl,
+    .text-5xl {
+        font-size: 2rem !important;
+        line-height: 1.2 !important;
+    }
+
+    h1.text-4xl,
+    h2.text-4xl,
+    .text-4xl {
+        font-size: 1.75rem !important;
+        line-height: 1.25 !important;
+    }
+}
+
+/* ============================================================
+   HOME SECTION — Hero
+   ============================================================ */
+
+/* Hero image: cap aspect ratio on small screens */
+@media (max-width: 767px) {
+    #home .aspect-\[4\/5\] {
+        aspect-ratio: 4 / 4;
+        max-height: 340px;
+    }
+
+    #home .text-5xl.lg\:text-7xl {
+        font-size: 2.25rem !important;
+        line-height: 1.15 !important;
+    }
+
+    /* Stats grid — 2 columns on mobile is fine, but 3rd card full-width is already handled */
+    #home .mt-16.grid {
+        margin-top: 2.5rem;
+        gap: 0.75rem;
+    }
+
+    #home .mt-16.grid > div {
+        padding: 0.875rem 1rem;
+    }
+}
+
+/* Tablet hero image */
+@media (min-width: 768px) and (max-width: 1023px) {
+    #home .aspect-\[4\/5\] {
+        aspect-ratio: 3 / 4;
+        max-height: 420px;
+    }
+}
+
+/* ============================================================
+   ABOUT SECTION
+   ============================================================ */
+
+/* About metrics grid: 2 cols on all sizes — already correct.
+   But metric cards overflow on very small screens (320px) */
+@media (max-width: 400px) {
+    #about-metrics-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* About image aspect ratio fix on mobile */
+@media (max-width: 767px) {
+    #about .aspect-\[4\/5\] {
+        aspect-ratio: 4 / 3;
+        max-height: 300px;
+    }
+
+    /* Journey timeline: show connecting line only on sm+ */
+    #about .hidden.sm\:block.absolute {
+        display: none;
+    }
+
+    /* Journey steps: stack vertically on mobile */
+    #about .relative.grid.grid-cols-1.sm\:grid-cols-3 {
+        gap: 0;
+    }
+
+    #about .relative.flex.flex-col.items-center.text-center.p-6 {
+        padding: 1rem;
+    }
+
+    /* CTA banner text */
+    #about .text-2xl.md\:text-3xl {
+        font-size: 1.25rem !important;
+    }
+}
+
+/* ============================================================
+   EDUCATION SECTION
+   ============================================================ */
+
+@media (max-width: 767px) {
+    /* Timeline vertical line: shift inward so it doesn't clip */
+    #education .absolute.left-6 {
+        left: 0.875rem;
+    }
+
+    /* Timeline item: reduce gap on mobile */
+    #education .relative.flex.gap-8 {
+        gap: 1rem;
+    }
+
+    /* Icon node: smaller on mobile */
+    #education .flex-shrink-0.size-12 {
+        width: 2.25rem;
+        height: 2.25rem;
+        min-width: 2.25rem;
+    }
+
+    /* Education card inner padding */
+    #education .bg-white.dark\:bg-slate-800.p-8 {
+        padding: 1.25rem;
+    }
+
+    /* Decorative image aspect ratio */
+    #education .aspect-\[21\/9\] {
+        aspect-ratio: 16 / 9;
+    }
+
+    /* Callout card: stack image circle */
+    #education .w-full.md\:w-1\/3 {
+        width: 100%;
+    }
+
+    /* Header h1 */
+    #education h1.text-5xl {
+        font-size: 2rem !important;
+    }
+}
+
+/* ============================================================
+   COURSES SECTION
+   ============================================================ */
+
+@media (max-width: 767px) {
+    /* Certification card: stack image + content vertically */
+    #courses .flex.flex-col.lg\:flex-row {
+        flex-direction: column;
+    }
+
+    #courses .lg\:w-1\/3 {
+        width: 100%;
+        height: 180px;
+    }
+
+    #courses .flex-1.p-8 {
+        padding: 1.25rem;
+    }
+
+    /* Inner grid */
+    #courses .grid.md\:grid-cols-2 {
+        grid-template-columns: 1fr;
+    }
+
+    #courses h1.text-4xl,
+    #courses h1.text-5xl {
+        font-size: 1.875rem !important;
+    }
+}
+
+/* ============================================================
+   SKILLS SECTION
+   ============================================================ */
+
+@media (max-width: 767px) {
+    /* Skill cards grid — already 1 col, but ensure padding */
+    #skills-cards-grid > div {
+        padding: 1.25rem;
+    }
+
+    /* Computer skills + language grid: stack on mobile */
+    #skills .grid.grid-cols-1.lg\:grid-cols-\[1fr_320px\] {
+        grid-template-columns: 1fr;
+    }
+
+    /* Soft skills container: tighten padding */
+    #soft-skills-container {
+        padding: 1rem;
+        gap: 0.5rem;
+    }
+
+    /* Skill chip text wrapping */
+    .skill-chip {
+        white-space: nowrap;
+    }
+
+    /* Label dividers: prevent overflow */
+    #skills .flex.items-center.gap-4 {
+        gap: 0.75rem;
+    }
+}
+
+/* ============================================================
+   SERVICES SECTION
+   ============================================================ */
+
+@media (max-width: 767px) {
+    /* Stats bar: 2x2 grid on mobile */
+    #services .grid.grid-cols-2.md\:grid-cols-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Services grid: 1 col on mobile */
+    #services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Service card padding */
+    #services-grid > div {
+        padding: 1.25rem;
+    }
+
+    /* CTA banner: stack buttons */
+    #services .flex.flex-col.md\:flex-row {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    /* Services grid: 2 col on tablet */
+    #services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ============================================================
+   PROJECTS SECTION
+   ============================================================ */
+
+@media (max-width: 767px) {
+    /* Project card: already flex-col on mobile, fix padding */
+    .project-card {
+        padding: 1.25rem !important;
+        gap: 1.25rem;
+    }
+
+    /* Project image: full width, constrain height */
+    .project-card .w-full.md\:w-5\/12 {
+        width: 100%;
+        height: 200px;
+    }
+
+    /* Project title: prevent overflow */
+    .project-card h3 {
+        font-size: 1.1rem !important;
+        word-break: break-word;
+    }
+
+    /* Badges: allow wrapping */
+    .project-card .flex.flex-wrap.gap-2 {
+        gap: 0.375rem;
+    }
+}
+
+/* ============================================================
+   ACHIEVEMENTS SECTION
+   ============================================================ */
+
+@media (max-width: 767px) {
+    /* Achievement cards already stack with flex-col — fix gap */
+    #achievements .relative.flex.flex-col.md\:flex-row {
+        gap: 1.25rem;
+    }
+
+    /* Hide center timeline line on mobile (already hidden via md:block) */
+    #achievements .absolute.left-0.md\:left-1\/2 {
+        display: none;
+    }
+
+    /* Stats grid: 1 col on mobile */
+    #achievements section.grid.grid-cols-1.md\:grid-cols-3 {
+        gap: 1rem;
+    }
+
+    /* Footer: stack CTA buttons */
+    #achievements footer .flex.justify-center.gap-4 {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    /* Achievement stats bottom margin */
+    #achievements section.mt-24 {
+        margin-top: 3rem;
+    }
+
+    /* Achievements footer quote */
+    #achievements footer.mt-24 {
+        margin-top: 3rem;
+    }
+}
+
+/* ============================================================
+   CONTACT SECTION
+   ============================================================ */
+
+@media (max-width: 767px) {
+    /* Contact grid: 1 col on mobile */
+    #contact .grid.md\:grid-cols-2 {
+        grid-template-columns: 1fr;
+    }
+
+    /* Contact cards padding */
+    #contact .group.p-8 {
+        padding: 1.5rem;
+    }
+
+    /* Social links: wrap to 2 per row */
+    #contact .flex.flex-wrap.gap-4 {
+        gap: 0.625rem;
+    }
+
+    #contact .flex.items-center.gap-3.px-6.py-4 {
+        padding: 0.75rem 1rem;
+        font-size: 0.875rem;
+    }
+
+    /* CTA card: stack button below text */
+    #contact .relative.z-10.flex.flex-col.md\:flex-row {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.25rem;
+    }
+
+    #contact .shrink-0.bg-white {
+        width: 100%;
+        text-align: center;
+        padding: 1rem 1.5rem;
+    }
+
+    /* Footer: stack copyright + links */
+    #contact footer.flex.justify-between {
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: flex-start;
+    }
+
+    /* Heading size */
+    #contact h2.text-5xl {
+        font-size: 1.875rem !important;
+        line-height: 1.2 !important;
+    }
+}
+
+/* ============================================================
+   THANKS SECTION
+   ============================================================ */
+
+@media (max-width: 767px) {
+    #thanks h2.text-5xl,
+    #thanks .text-5xl {
+        font-size: 2.25rem !important;
+    }
+
+    /* Decorative background SVG: reduce size on mobile */
+    #thanks .fixed.top-0.right-0.p-12 {
+        padding: 1rem;
+    }
+
+    #thanks .fixed.top-0.right-0.p-12 svg {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+/* ============================================================
+   TABLET ADJUSTMENTS (768px – 1023px)
+   ============================================================ */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    /* Overall section padding tightened for tablet */
+    .max-w-6xl.mx-auto.px-6 {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    /* Hero: reduce large gaps */
+    #home .gap-12.lg\:gap-20 {
+        gap: 2rem;
+    }
+
+    /* Hero title */
+    #home .text-5xl.lg\:text-7xl {
+        font-size: 3.25rem !important;
+    }
+
+    /* Education timeline: tighten */
+    #education .p-8.md\:p-16 {
+        padding: 2rem;
+    }
+
+    /* Certification card image on tablet */
+    #courses .lg\:w-1\/3 {
+        width: 40%;
+    }
+
+    /* About metrics grid stays 2-col — good */
+
+    /* Contact CTA card */
+    #contact .relative.z-10.flex.flex-col.md\:flex-row {
+        gap: 1.5rem;
+    }
+}
+
+/* ============================================================
+   COURSES CARD IMAGE HEIGHT — tablet portrait
+   ============================================================ */
+
+@media (min-width: 768px) and (max-width: 900px) {
+    #courses .lg\:w-1\/3.relative.h-48.lg\:h-auto {
+        height: 220px;
+    }
+}
+
+/* ============================================================
+   VERY SMALL MOBILE (320px – 375px)
+   ============================================================ */
+
+@media (max-width: 375px) {
+    /* Extra padding reduction */
+    .max-w-6xl.mx-auto.px-6,
+    .max-w-6xl.mx-auto.px-4 {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+
+    /* CTA buttons — full width stack */
+    .flex.flex-col.sm\:flex-row.gap-4 {
+        flex-direction: column;
+    }
+
+    /* Home stats grid: single column */
+    #home .mt-16.grid.grid-cols-2 {
+        grid-template-columns: 1fr;
+    }
+
+    /* Reduce hero image height */
+    #home .aspect-\[4\/5\] {
+        aspect-ratio: 1 / 1;
+        max-height: 280px;
+    }
+
+    /* Skill chips: allow wrap but constrain */
+    .skill-chip {
+        font-size: 0.65rem;
+        padding: 0.15rem 0.4rem;
+    }
+
+    /* About metrics: 1 col */
+    #about-metrics-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================================
+   MOBILE HEADER — sticky top bar (already lg:hidden)
+   ============================================================ */
+
+/* Ensure the mobile header doesn't overflow */
+header.lg\:hidden {
+    width: 100%;
+    max-width: 100vw;
+}
+
+header.lg\:hidden .flex.items-center.gap-3 span.font-bold {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 160px;
+}
+
+/* ============================================================
+   COURSES — Certification content detail grids
+   ============================================================ */
+
+@media (max-width: 767px) {
+    /* The detail bullet points grid in cert card */
+    #courses .grid.md\:grid-cols-2.gap-4 {
+        grid-template-columns: 1fr;
+    }
+
+    /* Skill tags in cert cards */
+    #courses .flex.flex-wrap.gap-2 {
+        gap: 0.375rem;
+    }
+}
+
+/* ============================================================
+   MOBILE DRAWER — width constraint on very small screens
+   ============================================================ */
+
+@media (max-width: 375px) {
+    #mobile-drawer {
+        width: 15rem !important;
+    }
+}
+
+/* ============================================================
+   PROJECTS — CTA bottom card
+   ============================================================ */
+
+@media (max-width: 767px) {
+    #projects .flex.items-center.justify-center.bg-primary\/5 {
+        padding: 2rem 1rem;
+    }
+}
+
+/* ============================================================
+   ACHIEVEMENTS — image aspect ratio
+   ============================================================ */
+
+@media (max-width: 767px) {
+    #achievements .w-full.aspect-\[4\/3\] {
+        aspect-ratio: 16 / 9;
+    }
+}
+
+/* ============================================================
+   ABOUT — CTA banner buttons on small screens
+   ============================================================ */
+
+@media (max-width: 640px) {
+    #about .flex.flex-col.sm\:flex-row.gap-3 {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    #about .flex.flex-col.sm\:flex-row.gap-3 a {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* ============================================================
+   SERVICES — CTA banner buttons
+   ============================================================ */
+
+@media (max-width: 640px) {
+    #services .flex.flex-col.sm\:flex-row.gap-3 {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    #services .flex.flex-col.sm\:flex-row.gap-3 a {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* ============================================================
+   GENERAL — long words / URLs overflow prevention
+   ============================================================ */
+
+p, h1, h2, h3, h4, a {
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+/* ============================================================
+   GENERAL — table-like grids on narrow viewports
+   ============================================================ */
+
+/* Any unseen 4-col grid on tablet should drop to 2 */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .grid.grid-cols-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ============================================================
+   EDUCATION — image status badge overflow on mobile
+   ============================================================ */
+
+@media (max-width: 480px) {
+    #education .absolute.bottom-6.left-6 {
+        left: 0.75rem;
+        bottom: 0.75rem;
+    }
+
+    #education .absolute.bottom-6.left-6 .bg-white\/90 {
+        padding: 0.5rem 0.75rem;
+    }
+}
+
+/* ============================================================
+   ABOUT — profile image status badge overflow on mobile
+   ============================================================ */
+
+@media (max-width: 480px) {
+    #about .absolute.bottom-5.left-5 {
+        left: 0.5rem;
+        bottom: 0.5rem;
+        right: 0.5rem;
+    }
+}
