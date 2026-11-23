@@ -12,7 +12,10 @@ export function Pipeline() {
   return (
     <section id="pipeline" aria-labelledby="pipeline-title" className="section-pad">
       <div className="site-container">
-        <h2 id="pipeline-title" className="text-2xl sm:text-3xl font-semibold tracking-tight">
+        <h2
+          id="pipeline-title"
+          className="text-2xl font-semibold tracking-tight sm:text-3xl"
+        >
           Pipeline &amp; Telemetry
         </h2>
         <p className="mt-2 max-w-2xl text-muted">
@@ -25,12 +28,12 @@ export function Pipeline() {
           <div className="mt-8 overflow-x-auto pb-3">
             <ol className="grid min-w-full gap-3 md:flex md:items-stretch md:gap-0">
               {stages.map((s, i) => (
-                <li key={s.slug} className="contents md:flex md:items-center md:flex-1">
+                <li key={s.slug} className="contents md:flex md:flex-1 md:items-center">
                   <button
                     type="button"
                     aria-pressed={active === s.slug}
                     onClick={() => setActive(s.slug)}
-                    className={`card-glow flex min-h-11 flex-col gap-1 p-3.5 sm:p-4 text-left md:flex-1 md:min-w-[130px] lg:min-w-[150px] shrink-0 ${active === s.slug ? "!border-primary bg-card-hover" : ""}`}
+                    className={`card-glow flex min-h-11 shrink-0 flex-col gap-1 p-3.5 text-left sm:p-4 md:min-w-[130px] md:flex-1 lg:min-w-[150px] ${active === s.slug ? "!border-primary bg-card-hover" : ""}`}
                   >
                     <span className="font-mono text-xs text-primary">STAGE {s.n}</span>
                     <span className="text-sm font-semibold leading-snug">{s.title}</span>

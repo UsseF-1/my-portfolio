@@ -73,7 +73,7 @@ export function FloatingDock() {
         <div
           onMouseMove={(e) => mouseX.set(e.pageX)}
           onMouseLeave={() => mouseX.set(Infinity)}
-          className="bg-bg-alt/90 flex h-[72px] items-end gap-3 rounded-2xl border border-line px-3 pb-2 backdrop-blur-md shadow-2xl"
+          className="bg-bg-alt/90 flex h-[72px] items-end gap-3 rounded-2xl border border-line px-3 pb-2 shadow-2xl backdrop-blur-md"
         >
           {NAV_ITEMS.map((item) => (
             <DockIcon
@@ -90,9 +90,9 @@ export function FloatingDock() {
       {/* Mobile: sleek floating pill dock with all 7 sections */}
       <nav
         aria-label="Section navigation"
-        className="fixed bottom-3 left-1/2 z-50 -translate-x-1/2 w-[min(calc(100vw-1.25rem),26rem)] md:hidden"
+        className="fixed bottom-3 left-1/2 z-50 w-[min(calc(100vw-1.25rem),26rem)] -translate-x-1/2 md:hidden"
       >
-        <div className="bg-bg-alt/95 flex items-center justify-between rounded-2xl border border-line/80 px-2 py-1.5 shadow-[0_8px_30px_rgba(0,0,0,0.6)] backdrop-blur-lg">
+        <div className="bg-bg-alt/95 border-line/80 flex items-center justify-between rounded-2xl border px-2 py-1.5 shadow-[0_8px_30px_rgba(0,0,0,0.6)] backdrop-blur-lg">
           {NAV_ITEMS.map(({ id, label, icon: Icon }) => {
             const isActive = active === id;
             return (
@@ -103,26 +103,26 @@ export function FloatingDock() {
                 aria-current={isActive ? "location" : undefined}
                 className={`group relative flex items-center gap-1.5 rounded-xl px-2 py-2 text-xs transition-all ${
                   isActive
-                    ? "border border-primary/40 bg-card-hover text-primary shadow-[0_0_10px_rgba(0,242,254,0.25)]"
-                    : "text-muted hover:text-fg hover:bg-card"
+                    ? "border-primary/40 border bg-card-hover text-primary shadow-[0_0_10px_rgba(0,242,254,0.25)]"
+                    : "text-muted hover:bg-card hover:text-fg"
                 }`}
               >
                 <Icon className="h-5 w-5 shrink-0" aria-hidden />
                 {isActive && (
-                  <span className="font-mono font-medium text-[11px] whitespace-nowrap hidden xs:inline-block max-w-[85px] truncate">
+                  <span className="xs:inline-block hidden max-w-[85px] truncate whitespace-nowrap font-mono text-[11px] font-medium">
                     {label}
                   </span>
                 )}
                 {/* Floating tooltip on hover/focus */}
                 <span
                   role="tooltip"
-                  className="pointer-events-none absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md border border-line bg-bg-alt px-2 py-0.5 font-mono text-[10px] text-fg opacity-0 transition-opacity group-hover:opacity-100 shadow-md"
+                  className="pointer-events-none absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md border border-line bg-bg-alt px-2 py-0.5 font-mono text-[10px] text-fg opacity-0 shadow-md transition-opacity group-hover:opacity-100"
                 >
                   {label}
                 </span>
                 {isActive && (
                   <span
-                    className="absolute -bottom-1 left-1/2 -translate-x-1/2 h-0.5 w-2 rounded-full bg-primary"
+                    className="absolute -bottom-1 left-1/2 h-0.5 w-2 -translate-x-1/2 rounded-full bg-primary"
                     aria-hidden
                   />
                 )}

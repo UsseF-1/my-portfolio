@@ -14,11 +14,13 @@ export function CurlTerminal({ command }: { command: string }) {
     }
   }
   return (
-    <div className="flex max-w-full min-w-0 items-center gap-2 rounded-lg border border-line bg-bg-alt py-1 pl-4 pr-1 font-mono text-sm">
-      <span className="text-success shrink-0" aria-hidden>
+    <div className="flex min-w-0 max-w-full items-center gap-2 rounded-lg border border-line bg-bg-alt py-1 pl-4 pr-1 font-mono text-sm">
+      <span className="shrink-0 text-success" aria-hidden>
         $
       </span>
-      <code className="min-w-0 flex-1 overflow-x-auto whitespace-nowrap text-success">{command}</code>
+      <code className="min-w-0 flex-1 overflow-x-auto whitespace-nowrap text-success">
+        {command}
+      </code>
       <button
         type="button"
         onClick={copy}

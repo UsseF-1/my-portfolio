@@ -38,8 +38,8 @@ const BADGES = [
 export function PhotoFrame({ hasPhoto }: { hasPhoto: boolean }) {
   const reduce = useReducedMotion();
   return (
-    <div className="relative mx-auto flex w-full max-w-xs sm:max-w-sm items-center justify-center px-1 py-6 sm:px-6 md:px-8">
-      <div className="relative aspect-[4/5] w-52 sm:w-64 md:w-72 overflow-hidden rounded-2xl border-2 border-primary/50 shadow-[0_0_35px_rgba(0,242,254,0.25)]">
+    <div className="relative mx-auto flex w-full max-w-xs items-center justify-center px-1 py-6 sm:max-w-sm sm:px-6 md:px-8">
+      <div className="border-primary/50 relative aspect-[4/5] w-52 overflow-hidden rounded-2xl border-2 shadow-[0_0_35px_rgba(0,242,254,0.25)] sm:w-64 md:w-72">
         {hasPhoto ? (
           <Image
             src={profile.photoPath}
@@ -61,7 +61,7 @@ export function PhotoFrame({ hasPhoto }: { hasPhoto: boolean }) {
         return (
           <motion.div
             key={badge.name}
-            className={`absolute ${badge.pos} z-10 flex items-center gap-1.5 sm:gap-2 rounded-full border border-primary/40 bg-card/95 px-2.5 py-1 sm:px-3.5 sm:py-2 text-[11px] sm:text-xs font-mono font-medium text-fg shadow-[0_4px_20px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all hover:border-primary hover:shadow-[0_0_15px_rgba(0,242,254,0.35)]`}
+            className={`absolute ${badge.pos} border-primary/40 bg-card/95 z-10 flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-mono text-[11px] font-medium text-fg shadow-[0_4px_20px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all hover:border-primary hover:shadow-[0_0_15px_rgba(0,242,254,0.35)] sm:gap-2 sm:px-3.5 sm:py-2 sm:text-xs`}
             animate={reduce ? undefined : { y: [...badge.yRange] }}
             transition={{
               duration: badge.duration,
@@ -70,7 +70,10 @@ export function PhotoFrame({ hasPhoto }: { hasPhoto: boolean }) {
               delay: badge.delay,
             }}
           >
-            <Icon className="h-3.5 w-3.5 sm:h-4.5 sm:w-4.5 text-primary shrink-0" aria-hidden />
+            <Icon
+              className="sm:h-4.5 sm:w-4.5 h-3.5 w-3.5 shrink-0 text-primary"
+              aria-hidden
+            />
             <span>{badge.name}</span>
           </motion.div>
         );

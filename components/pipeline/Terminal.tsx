@@ -37,7 +37,7 @@ export function Terminal({ slug, title }: { slug: string; title: string }) {
   return (
     <div className="overflow-hidden rounded-xl border border-line bg-bg-alt">
       <div className="flex items-center justify-between gap-2 border-b border-line px-4 py-1">
-        <span className="min-w-0 truncate font-mono text-xs sm:text-sm text-muted">
+        <span className="min-w-0 truncate font-mono text-xs text-muted sm:text-sm">
           {title} · {slug}.log
         </span>
         <button

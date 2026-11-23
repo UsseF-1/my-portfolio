@@ -7,7 +7,10 @@ export function Section({ id, title, phase, children }: Props) {
   return (
     <section id={id} aria-labelledby={`${id}-title`} className="section-pad">
       <div className="site-container">
-        <h2 id={`${id}-title`} className="text-2xl sm:text-3xl font-semibold tracking-tight">
+        <h2
+          id={`${id}-title`}
+          className="text-2xl font-semibold tracking-tight sm:text-3xl"
+        >
           {title}
         </h2>
         {children ?? (

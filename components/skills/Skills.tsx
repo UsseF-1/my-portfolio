@@ -58,7 +58,10 @@ export function Skills() {
   return (
     <section id="skills" aria-labelledby="skills-title" className="section-pad">
       <div className="site-container">
-        <h2 id="skills-title" className="text-2xl sm:text-3xl font-semibold tracking-tight">
+        <h2
+          id="skills-title"
+          className="text-2xl font-semibold tracking-tight sm:text-3xl"
+        >
           Infrastructure Tech Stack Matrix
         </h2>
         <div
@@ -79,7 +82,7 @@ export function Skills() {
               tabIndex={tab === t ? 0 : -1}
               onClick={() => setTab(t)}
               onKeyDown={(e) => onKey(e, i)}
-              className={`min-h-10 sm:min-h-11 rounded-lg border px-3 sm:px-4 font-mono text-xs sm:text-sm ${tab === t ? "border-primary bg-card-hover text-primary" : "border-line text-muted hover:text-fg"}`}
+              className={`min-h-10 rounded-lg border px-3 font-mono text-xs sm:min-h-11 sm:px-4 sm:text-sm ${tab === t ? "border-primary bg-card-hover text-primary" : "border-line text-muted hover:text-fg"}`}
             >
               {t}
             </button>

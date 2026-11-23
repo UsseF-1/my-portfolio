@@ -78,17 +78,17 @@ function LinkRow({ label, href }: { label: string; href: string }) {
     <li className="hover:border-primary/60 flex flex-wrap items-center gap-3 rounded-xl border border-line bg-bg-alt p-3 transition-colors">
       <Icon className="h-5 w-5 shrink-0 text-primary" aria-hidden />
       <div className="min-w-0 flex-1">
-        <p className="font-medium text-sm sm:text-base">{label}</p>
+        <p className="text-sm font-medium sm:text-base">{label}</p>
         <p className="truncate font-mono text-xs text-muted">
           {href.replace("https://", "")}
         </p>
       </div>
-      <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
+      <div className="flex w-full items-center justify-end gap-2 sm:w-auto">
         <a
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex min-h-10 sm:min-h-11 items-center gap-2 rounded-lg bg-primary px-3 sm:px-4 font-medium text-xs sm:text-sm text-bg transition hover:brightness-110"
+          className="inline-flex min-h-10 items-center gap-2 rounded-lg bg-primary px-3 text-xs font-medium text-bg transition hover:brightness-110 sm:min-h-11 sm:px-4 sm:text-sm"
         >
           {isRepo ? "View repo" : "View"} <ExternalLink className="h-4 w-4" aria-hidden />
         </a>
@@ -96,7 +96,7 @@ function LinkRow({ label, href }: { label: string; href: string }) {
           type="button"
           onClick={copy}
           aria-label={`Copy link: ${label}`}
-          className="inline-flex min-h-10 sm:min-h-11 min-w-10 sm:min-w-11 items-center justify-center gap-2 rounded-lg border border-line px-2.5 sm:px-3 text-muted transition hover:border-primary hover:text-primary"
+          className="inline-flex min-h-10 min-w-10 items-center justify-center gap-2 rounded-lg border border-line px-2.5 text-muted transition hover:border-primary hover:text-primary sm:min-h-11 sm:min-w-11 sm:px-3"
         >
           {copied ? (
             <Check className="h-4 w-4 text-success" aria-hidden />
@@ -144,14 +144,14 @@ export function ProjectModal({
         requestClose();
       }}
       onClick={(e) => e.target === ref.current && requestClose()}
-      className="fixed inset-0 m-0 h-full max-h-none w-full max-w-none items-center justify-center bg-transparent p-2.5 sm:p-6 text-fg backdrop:bg-black/70 backdrop:backdrop-blur-sm open:flex"
+      className="fixed inset-0 m-0 h-full max-h-none w-full max-w-none items-center justify-center bg-transparent p-2.5 text-fg backdrop:bg-black/70 backdrop:backdrop-blur-sm open:flex sm:p-6"
     >
       <motion.div
         variants={panelV}
         initial={reduce ? false : "hidden"}
         animate={closing ? "exit" : "show"}
         onAnimationComplete={(def) => def === "exit" && onClose()}
-        className="border-primary/40 relative max-h-[94vh] sm:max-h-full w-[min(56rem,100%)] overflow-y-auto rounded-2xl border bg-card shadow-[0_0_60px_-12px_rgba(0,242,254,0.35)]"
+        className="border-primary/40 relative max-h-[94vh] w-[min(56rem,100%)] overflow-y-auto rounded-2xl border bg-card shadow-[0_0_60px_-12px_rgba(0,242,254,0.35)] sm:max-h-full"
       >
         <div className="bg-card/90 sticky top-0 z-10 border-b border-line backdrop-blur">
           <div
@@ -186,10 +186,15 @@ export function ProjectModal({
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <h4 className="flex items-center gap-2 font-semibold">
-                  <span className="h-4 w-1 rounded-full bg-primary" aria-hidden /> Live Demo Walkthrough
+                  <span className="h-4 w-1 rounded-full bg-primary" aria-hidden /> Live
+                  Demo Walkthrough
                 </h4>
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/40 bg-bg px-2.5 py-0.5 font-mono text-xs text-primary">
-                  <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" aria-hidden /> LIVE VIDEO
+                <span className="border-primary/40 inline-flex items-center gap-1.5 rounded-full border bg-bg px-2.5 py-0.5 font-mono text-xs text-primary">
+                  <span
+                    className="h-1.5 w-1.5 animate-pulse rounded-full bg-primary"
+                    aria-hidden
+                  />{" "}
+                  LIVE VIDEO
                 </span>
               </div>
               <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-line bg-bg shadow-lg">
@@ -209,7 +214,8 @@ export function ProjectModal({
           <Item>
             <div className="space-y-2">
               <h4 className="flex items-center gap-2 font-semibold">
-                <span className="h-4 w-1 rounded-full bg-primary" aria-hidden /> Architecture Diagram
+                <span className="h-4 w-1 rounded-full bg-primary" aria-hidden />{" "}
+                Architecture Diagram
               </h4>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img

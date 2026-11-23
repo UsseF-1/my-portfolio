@@ -2,7 +2,6 @@ import { existsSync } from "node:fs";
 import { join } from "node:path";
 import { Download, Github, Linkedin } from "lucide-react";
 import { profile } from "@/data/profile";
-import { Reveal } from "@/components/Reveal";
 import { TypedWord } from "./TypedWord";
 import { CurlTerminal } from "./CurlTerminal";
 import { PhotoFrame } from "./PhotoFrame";
@@ -17,9 +16,13 @@ export function Hero() {
   const full = `${profile.headlinePrefix} ${profile.headlineWords.join(", ")} ${profile.headlineSuffix}`;
 
   return (
-    <section id="home" aria-labelledby="hero-title" className="section-pad overflow-x-clip">
+    <section
+      id="home"
+      aria-labelledby="hero-title"
+      className="section-pad overflow-x-clip"
+    >
       <div className="site-container space-y-4 sm:space-y-5">
-        <Reveal className="space-y-3 sm:space-y-4">
+        <div className="space-y-3 sm:space-y-4">
           <p className="inline-flex items-center gap-2 rounded-full border border-line bg-card px-3 py-1.5 font-mono text-sm">
             <span className="h-2 w-2 rounded-full bg-success" aria-hidden />
             <span className="text-success">[STATUS: {profile.status}]</span>
@@ -36,29 +39,28 @@ export function Hero() {
           >
             <span className="sr-only">{full}</span>
             <span aria-hidden>
-              <span>{profile.headlinePrefix}</span>{" "}
-              <br className="sm:hidden" />
+              <span>{profile.headlinePrefix}</span> <br className="sm:hidden" />
               <span className="sm:whitespace-nowrap">
                 <TypedWord words={profile.headlineWords} /> {profile.headlineSuffix}
               </span>
             </span>
           </h1>
-        </Reveal>
+        </div>
 
         <div className="grid w-full min-w-0 items-center gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:gap-12">
-          <Reveal className="w-full min-w-0 space-y-5">
+          <div className="w-full min-w-0 space-y-5">
             <p className="max-w-xl text-base leading-relaxed text-muted">{profile.bio}</p>
             <div className="flex w-full flex-wrap items-center gap-3">
               <a
                 href={profile.cvPath}
                 download
-                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-primary px-4 sm:px-5 font-medium text-xs sm:text-sm text-bg hover:brightness-110"
+                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-primary px-4 text-xs font-medium text-bg hover:brightness-110 sm:px-5 sm:text-sm"
               >
                 <Download className="h-4 w-4" aria-hidden /> Download CV
               </a>
               <a
                 href="#practices"
-                className="inline-flex min-h-11 items-center justify-center rounded-lg border border-primary px-4 sm:px-5 font-medium text-xs sm:text-sm text-primary hover:bg-card-hover"
+                className="inline-flex min-h-11 items-center justify-center rounded-lg border border-primary px-4 text-xs font-medium text-primary hover:bg-card-hover sm:px-5 sm:text-sm"
               >
                 Explore Practices
               </a>
@@ -84,15 +86,18 @@ export function Hero() {
             </div>
             <ul className="flex w-full flex-wrap gap-2 text-sm">
               {profile.chips.map((c) => (
-                <li key={c} className="rounded-full border border-line bg-card px-3 py-1 text-xs sm:text-sm">
+                <li
+                  key={c}
+                  className="rounded-full border border-line bg-card px-3 py-1 text-xs sm:text-sm"
+                >
                   {c}
                 </li>
               ))}
             </ul>
-          </Reveal>
-          <Reveal delay={0.15} className="w-full min-w-0 flex justify-center">
+          </div>
+          <div className="flex w-full min-w-0 justify-center">
             <PhotoFrame hasPhoto={hasPhoto} />
-          </Reveal>
+          </div>
         </div>
       </div>
     </section>

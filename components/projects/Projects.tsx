@@ -29,7 +29,10 @@ export function Projects() {
   return (
     <section id="projects" aria-labelledby="projects-title" className="section-pad">
       <div className="site-container">
-        <h2 id="projects-title" className="text-2xl sm:text-3xl font-semibold tracking-tight">
+        <h2
+          id="projects-title"
+          className="text-2xl font-semibold tracking-tight sm:text-3xl"
+        >
           Projects
         </h2>
         <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -45,7 +48,7 @@ export function Projects() {
                   <ProjectCover slug={p.slug} coverId={p.coverId} title={p.short} />
                   <span className="flex flex-1 flex-col gap-4 p-5 sm:p-6">
                     <span className="text-lg font-semibold leading-snug">{p.title}</span>
-                    <span className="text-sm sm:text-base text-muted">{p.summary}</span>
+                    <span className="text-sm text-muted sm:text-base">{p.summary}</span>
                     <span className="mt-auto flex flex-wrap gap-2 pt-2">
                       {p.topIcons.slice(0, 5).map((t) => (
                         <TechIcon key={t} name={t} />
