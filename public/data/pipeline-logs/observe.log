@@ -1,0 +1,5 @@
+# SAMPLE LOG - replace with a real run
+[sample] Prometheus scraping cluster and application metrics
+[sample] Grafana dashboards reading from Prometheus
+[sample] Alertmanager: no active alerts
+[sample] HPA: watching CPU utilization via metrics-server

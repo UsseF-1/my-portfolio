@@ -1,0 +1,5 @@
+# SAMPLE LOG - replace with a real run
+[sample] ArgoCD detects change in the helm repository
+[sample] Application status: OutOfSync -> Syncing
+[sample] Rolling out workloads to EKS
+[sample] Application status: Synced, Healthy

@@ -1,0 +1,6 @@
+# SAMPLE LOG - replace with a real run
+$ docker build -t app:candidate .
+[sample] Image built
+$ trivy image app:candidate
+[sample] Scanning image for vulnerabilities
+[sample] Scan complete - gate result goes here

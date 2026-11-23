@@ -1,0 +1,5 @@
+# SAMPLE LOG - replace with a real run
+$ docker push registry/app:tag
+[sample] Image published
+[sample] Updating image tag in Helm values (helm repo)
+[sample] Commit pushed to the helm repository

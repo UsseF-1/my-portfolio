@@ -1,0 +1,6 @@
+# SAMPLE LOG - replace with a real run
+$ mvn checkstyle:check
+[sample] Checkstyle: rules evaluated against the source tree
+$ mvn sonar:sonar
+[sample] SonarQube: analysis submitted, waiting for quality gate
+[sample] Quality gate: PASSED

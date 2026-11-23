@@ -1,0 +1,6 @@
+# SAMPLE LOG - replace with a real run
+$ mvn clean package
+[sample] Compiling modules
+[sample] Running unit tests
+[sample] Packaging application artifact
+[sample] BUILD SUCCESS

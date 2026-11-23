@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 380" width="800" height="380" role="img" font-family="Inter,system-ui,sans-serif">
+<rect width="800" height="380" fill="#0A0E17"/>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#A1A1AA"/></marker></defs>
+<line x1="190" y1="75" x2="260" y2="75" stroke="#A1A1AA" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="190" y1="185" x2="260" y2="185" stroke="#A1A1AA" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="190" y1="295" x2="260" y2="295" stroke="#A1A1AA" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="430" y1="75" x2="500" y2="130" stroke="#A1A1AA" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="430" y1="185" x2="500" y2="160" stroke="#A1A1AA" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="430" y1="295" x2="500" y2="190" stroke="#A1A1AA" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="650" y1="155" x2="690" y2="155" stroke="#A1A1AA" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="20" y="40" width="170" height="70" rx="8" fill="#181B25" stroke="#00F2FE" stroke-width="1.5"/>
+<text x="105.0" y="71.0" text-anchor="middle" fill="#E5E7EB" font-size="14" font-weight="600">5-member team</text>
+<text x="105.0" y="89.0" text-anchor="middle" fill="#A1A1AA" font-size="11">Git workflow, PR reviews</text>
+<rect x="20" y="150" width="170" height="70" rx="8" fill="#181B25" stroke="#00F2FE" stroke-width="1.5"/>
+<text x="105.0" y="181.0" text-anchor="middle" fill="#E5E7EB" font-size="14" font-weight="600">Terraform</text>
+<text x="105.0" y="199.0" text-anchor="middle" fill="#A1A1AA" font-size="11">AWS provisioning</text>
+<rect x="20" y="260" width="170" height="70" rx="8" fill="#181B25" stroke="#00F2FE" stroke-width="1.5"/>
+<text x="105.0" y="291.0" text-anchor="middle" fill="#E5E7EB" font-size="14" font-weight="600">Ansible</text>
+<text x="105.0" y="309.0" text-anchor="middle" fill="#A1A1AA" font-size="11">node configuration</text>
+<rect x="260" y="40" width="170" height="70" rx="8" fill="#181B25" stroke="#00F2FE" stroke-width="1.5"/>
+<text x="345.0" y="71.0" text-anchor="middle" fill="#E5E7EB" font-size="14" font-weight="600">GitHub Actions</text>
+<text x="345.0" y="89.0" text-anchor="middle" fill="#A1A1AA" font-size="11">CI/CD, Trivy scan</text>
+<rect x="260" y="150" width="170" height="70" rx="8" fill="#181B25" stroke="#DDB7FF" stroke-width="1.5"/>
+<text x="345.0" y="181.0" text-anchor="middle" fill="#E5E7EB" font-size="14" font-weight="600">Helm charts</text>
+<text x="345.0" y="199.0" text-anchor="middle" fill="#A1A1AA" font-size="11">reusable, parameterized</text>
+<rect x="260" y="260" width="170" height="70" rx="8" fill="#181B25" stroke="#4EDEA3" stroke-width="1.5"/>
+<text x="345.0" y="291.0" text-anchor="middle" fill="#E5E7EB" font-size="14" font-weight="600">AWS</text>
+<text x="345.0" y="309.0" text-anchor="middle" fill="#A1A1AA" font-size="11">infrastructure</text>
+<rect x="500" y="100" width="150" height="110" rx="8" fill="#181B25" stroke="#4EDEA3" stroke-width="1.5"/>
+<text x="575.0" y="151.0" text-anchor="middle" fill="#E5E7EB" font-size="14" font-weight="600">Kubernetes</text>
+<text x="575.0" y="169.0" text-anchor="middle" fill="#A1A1AA" font-size="11">cluster with RBAC</text>
+<rect x="690" y="100" width="95" height="110" rx="8" fill="#181B25" stroke="#4EDEA3" stroke-width="1.5"/>
+<text x="737.5" y="142.0" text-anchor="middle" fill="#E5E7EB" font-size="14" font-weight="600">Observe</text>
+<text x="737.5" y="162.0" text-anchor="middle" fill="#A1A1AA" font-size="10">Prometheus</text>
+<text x="737.5" y="178.0" text-anchor="middle" fill="#A1A1AA" font-size="10">Grafana</text>
+<text x="16" y="368" fill="#A1A1AA" font-size="11">Architecture Overview · Enterprise GitOps Kubernetes Platform</text></svg>
